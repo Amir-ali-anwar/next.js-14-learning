@@ -3,8 +3,8 @@ import Link from 'next/link'
 const page = () => {
   return (
     <>
-    <div>Home page</div>
-    <Link href="/about">About page</Link>
+    <div>About page</div>
+    <Link href="/">Home Page</Link>
     </>
   )
 }
