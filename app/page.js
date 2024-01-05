@@ -4,7 +4,8 @@ const page = () => {
   return (
     <>
     <div>Home page</div>
-    <Link href="/about">About page</Link>
+    <Link href="/about" style={{display:'block'}}>About page</Link>
+    <Link href="/about/info">Info page</Link>
     </>
   )
 }
