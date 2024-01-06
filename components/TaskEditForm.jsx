@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TaskEditForm = () => {
+const TaskEditForm = ({id}) => {
   return (
     <div>TaskEditForm</div>
   )
