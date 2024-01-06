@@ -1,9 +1,9 @@
 import Link from "next/link";
 const links = [
-  { href: "/client", label: "client" },
-  { href: "/drinks", label: "drinks" },
-  { href: "/prisma-example", label: "prisma" },
-  { href: "/task", label: "tasks" },
+  { href: '/client', label: 'client' },
+  { href: '/drinks', label: 'drinks' },
+  { href: '/prisma-example', label: 'prisma' },
+  { href: '/task', label: 'tasks' },
 ];
 
 const Navbar = () => {
