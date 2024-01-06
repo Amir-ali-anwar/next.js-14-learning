@@ -8,3 +8,9 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+model Task {
+  id String @id @default(uuid())
+  content String
+  createdAt DateTime @default(now())
+  completed Boolean @default(false)
+}
