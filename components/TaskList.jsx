@@ -1,5 +1,7 @@
 import React from "react";
+import Link from 'next/link';
 import prisma from "@/utils/db";
+import DeleteTask from "./DeleteTask";
 export const getAllTasks = () => {
   const task = prisma.task.findMany({
     orderBy: {
@@ -28,6 +30,15 @@ const TaskList = async () => {
             >
               {task.content}
             </h2>
+            <div className='flex gap-6 items-center'>
+              <Link
+                href={`/tasks/${task.id}`}
+                className='btn btn-accent btn-xs'
+              >
+                edit
+              </Link>
+              <DeleteTask id={task.id} />
+            </div>
           </li>
         );
       })}
