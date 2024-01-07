@@ -27,3 +27,22 @@ export const editTask = async (formData) => {
     });
     redirect('/task')
 };
+
+export const deleteTask = async (formData) => {
+
+    const id = await formData.get("id");
+    const result = await prisma.task.delete({
+        where: { id },
+    });
+    revalidatePath('/task')
+    return result;
+};
+
+export const getAllTasks = () => {
+    const task = prisma.task.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return task
+  };
