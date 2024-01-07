@@ -5,20 +5,22 @@ import prisma from "@/utils/db";
 import { z } from 'zod';
 export const createTask = async (prevState, formData) => {
     const content = formData.get("content");
+    console.log({ content });
     const TaskSchema = z.object({
         content: z.string().min(4)
     })
     try {
         TaskSchema.parse({ content })
-        const task = await prisma.task.create({
+        await prisma.task.create({
             data: {
                 content,
             },
         });
         revalidatePath("/task");
-        return { message: "success", task };
+        return { message: "success" };
     } catch (error) {
-        return {message:'Error'}
+        console.log({ error });
+        return { message: 'Error' }
     }
 
 };
