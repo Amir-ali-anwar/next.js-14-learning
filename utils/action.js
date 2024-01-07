@@ -2,15 +2,25 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from 'next/navigation';
 import prisma from "@/utils/db";
-export const createTask = async (formData) => {
+import { z } from 'zod';
+export const createTask = async (prevState, formData) => {
     const content = formData.get("content");
-    const task = await prisma.task.create({
-        data: {
-            content,
-        },
-    });
-    revalidatePath("/task");
-    return task;
+    const TaskSchema = z.object({
+        content: z.string().min(4)
+    })
+    try {
+        TaskSchema.parse({ content })
+        const task = await prisma.task.create({
+            data: {
+                content,
+            },
+        });
+        revalidatePath("/task");
+        return { message: "success", task };
+    } catch (error) {
+        return {message:'Error'}
+    }
+
 };
 export const editTask = async (formData) => {
     const id = formData.get("id");
@@ -40,9 +50,9 @@ export const deleteTask = async (formData) => {
 
 export const getAllTasks = () => {
     const task = prisma.task.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
+        orderBy: {
+            createdAt: "desc",
+        },
     });
     return task
-  };
+};
