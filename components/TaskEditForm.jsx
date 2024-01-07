@@ -1,22 +1,6 @@
-import { revalidatePath } from "next/cache";
-import { redirect } from 'next/navigation';
+
 import React from "react";
-const editTask = async (formData) => {
-  "use server";
-  const id = formData.get("id");
-  const content = formData.get("content");
-  const completed = formData.get("completed");
-  await prisma.task.update({
-    where: {
-      id,
-    },
-    data: {
-      content,
-      completed: completed === "on" ? true : false,
-    },
-  });
-  redirect('/task')
-};
+import {editTask} from '@/utils/action'
 const TaskEditForm = ({ task }) => {
   const { id, completed, content } = task;
   return (
