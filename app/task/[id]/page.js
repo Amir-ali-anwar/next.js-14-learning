@@ -11,9 +11,8 @@ export const getSingleTask = (id) => {
   });
   return task
 };
-const SingleTaskPage = ({ params }) => {
-  const id = getSingleTask(params.id)
- 
+const SingleTaskPage = async ({ params }) => {
+  const task =  await getSingleTask(params.id)
   return (
     <>
       <div className='mb-16'>
@@ -21,7 +20,7 @@ const SingleTaskPage = ({ params }) => {
           back to tasks
         </Link>
       </div>
-      <TaskEditForm id={id} />
+      <TaskEditForm task={task} />
     </>
   )
 }
