@@ -5,6 +5,7 @@ const links = [
   { href: '/prisma-example', label: 'prisma' },
   { href: '/task', label: 'tasks' },
   { href: '/ClientComponent', label: 'ClientComponent' },
+  { href: '/ServerComponent', label: 'ServerComponent' },
 ];
 
 const Navbar = () => {
